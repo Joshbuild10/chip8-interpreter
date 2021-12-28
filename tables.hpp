@@ -51,33 +51,10 @@ void chip8::init_table()
 	table_Fx1[0xE] = &chip8::op_Fx1E;
 }
 
-void chip8::table0()
-{
-	(this->*table_0[opCode & 0x000F])();
-}
-
-void chip8::table8()
-{
-	(this->*table_8[opCode & 0x000F])();
-}
-
-void chip8::tableE()
-{
-	(this->*table_E[(opCode & 0x00F0) >> 4])();
-}
-
-void chip8::tableF()
-{
-	(this->*table_F[(opCode & 0x00F0) >> 4])();
-}
-
-void chip8::tableFx0()
-{
-	(this->*table_Fx0[opCode & 0x000F])();
-}
-
-void chip8::tableFx1()
-{
-	(this->*table_Fx1[opCode & 0x000F])();
-}
+void chip8::table0() { (this->*table_0[n])(); }
+void chip8::table8() { (this->*table_8[n])(); }
+void chip8::tableE() { (this->*table_E[(opCode & 0x00F0) >> 4])(); }
+void chip8::tableF() { (this->*table_F[(opCode & 0x00F0) >> 4])(); }
+void chip8::tableFx0() { (this->*table_Fx0[n])(); }
+void chip8::tableFx1() { (this->*table_Fx1[n])(); }
 #endif
